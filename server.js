@@ -8,7 +8,10 @@ const io = new Server(server);
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
-  console.log("socket connected");
+    console.log("socket connexted");
+    socket.on("kirim-pesan", (pesan) => {
+        socket.broadcast.emit("pesan-baru", pesan);
+    });
 });
 
 server.listen(3000);
